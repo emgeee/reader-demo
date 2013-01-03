@@ -14,12 +14,13 @@
 ActiveRecord::Schema.define(:version => 20130102164433) do
 
   create_table "annotations", :force => true do |t|
-    t.integer  "position",   :limit => 8
-    t.integer  "length",     :limit => 8
+    t.integer  "position",    :limit => 8
+    t.integer  "length",      :limit => 8
     t.string   "name"
     t.text     "comment"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.integer  "document_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "documents", :force => true do |t|

@@ -5,6 +5,7 @@ class CreateAnnotations < ActiveRecord::Migration
       t.integer :length, :limit => 8
       t.string :name
       t.text :comment
+      t.integer :document_id
 
       t.timestamps
     end
