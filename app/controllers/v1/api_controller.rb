@@ -1,6 +1,10 @@
 class V1::ApiController < ApplicationController
   skip_before_filter :verify_authenticity_token #ignore csfr check
 
+  #############################
+  # Index Methods
+  #############################
+
   # GET /v1/documents
   def show_documents
     @documents = Document.all
@@ -8,17 +12,21 @@ class V1::ApiController < ApplicationController
     render json: @documents
   end
 
-  # GET /v1/documents/:document_id
-  def show_document
-    @document = Document.find_by_id(params[:document_id])
-    render json: @document
-  end
-
   # GET /v1/documents/:document_id/annotations
   def show_annotations
     @annotations = Document.find_by_id(params[:document_id]).annotations
 
     render json: @annotations
+  end
+
+  #############################
+  # Document Methods
+  #############################
+  
+  # GET /v1/documents/:document_id
+  def show_document
+    @document = Document.find_by_id(params[:document_id])
+    render json: @document
   end
 
   # POST /v1/documents
@@ -43,6 +51,9 @@ class V1::ApiController < ApplicationController
     end
   end
 
+  #############################
+  # Annotation Methods
+  #############################
 
   # GET /v1/annotations/:annotation_id
   def show_annotation
@@ -73,16 +84,5 @@ class V1::ApiController < ApplicationController
       render json: @annotation.errors, status: :unprocessable_entity
     end
   end
-
-
-  # Documents
-  # Title, Body
-
-  # Annotations
-  # New - Article Number, Name, Comment,
-
-
-
-
 
 end
