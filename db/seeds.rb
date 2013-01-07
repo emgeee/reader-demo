@@ -140,7 +140,7 @@ Shall be lifted - nevermore!")
 @annotation1 = Annotation.create(
     name: "Matt",
     comment: "DEEZ BEATZ ARE DOPE",
-    document_id: 1,
+    document_id: @document1.id,
     position: 10,
     length: 30
   )

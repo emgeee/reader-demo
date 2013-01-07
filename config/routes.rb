@@ -8,6 +8,7 @@ ReaderDemo::Application.routes.draw do
     get '/documents/:document_id', to: 'api#show_document'
     get '/documents/:document_id/annotations', to: 'api#show_annotations'
 
+    post '/documents/:document_id/annotations', to: 'api#new_annotation'
   end
 
 end

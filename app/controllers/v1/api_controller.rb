@@ -8,18 +8,35 @@ class V1::ApiController < ApplicationController
     render json: @documents
   end
 
-  # GET /v1/documents
+  # GET /v1/documents/:document_id
   def show_document
-    @document = Document.find_by_id(params['document_id'])
+    @document = Document.find_by_id(params[:document_id])
     render json: @document
   end
 
+  # GET /v1/doucments/:document_id/annotations
   def show_annotations
-    @annotations = Document.find_by_id(params['document_id']).annotations
+    @annotations = Document.find_by_id(params[:document_id]).annotations
 
     render json: @annotations
   end
 
+  # POST /v1/documents/:document_id/annotations
+  def new_annotation
+    
+    logger.debug params[:document_id]
+
+    params[:annotation][:document_id] = params[:document_id];
+
+
+    @annotation = Annotation.new(params[:annotation])
+
+    if @annotation.save
+      render json: @annotation, status: :created, location: @annotation 
+    else
+      render json: @annotation.errors, status: :unprocessable_entity
+    end
+  end
 
 
   # Documents
