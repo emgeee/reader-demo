@@ -9,6 +9,10 @@ ReaderDemo::Application.routes.draw do
     get '/documents/:document_id/annotations', to: 'api#show_annotations'
 
     post '/documents/:document_id/annotations', to: 'api#new_annotation'
+    
+    get '/annotations/:annotation_id', to: 'api#show_annotation'
+    put '/annotations/:annotation_id', to: 'api#update_annotation'
+
   end
 
 end
