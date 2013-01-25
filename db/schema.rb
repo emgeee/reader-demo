@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102164433) do
+ActiveRecord::Schema.define(:version => 20130125182655) do
 
   create_table "annotations", :force => true do |t|
     t.integer  "position",    :limit => 8
@@ -26,8 +26,12 @@ ActiveRecord::Schema.define(:version => 20130102164433) do
   create_table "documents", :force => true do |t|
     t.text     "name"
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "epub_file_name"
+    t.string   "epub_content_type"
+    t.integer  "epub_file_size"
+    t.datetime "epub_updated_at"
   end
 
 end
