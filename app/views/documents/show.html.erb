@@ -10,6 +10,10 @@
   <%= @document.body %>
 </p>
 
+<p>
+  <b>Document Download Link:</b><br>
+  <%= link_to "url", @document.epub.url %><br>
+</p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
 <%= link_to 'Back', documents_path %>
