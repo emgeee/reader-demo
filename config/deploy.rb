@@ -12,7 +12,7 @@ set :application, 'tearsheet'
 # $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
 set :rvm_ruby_string, '1.9.3'
-set :rvm_type, :user
+set :rvm_type, :system
 
 # file paths
 set :repository,  "git@github.com:emgeee/reader-demo.git" 
