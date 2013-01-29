@@ -1,15 +1,18 @@
 class Document < ActiveRecord::Base
   attr_accessible :body, :name, :epub
   has_attached_file :epub,
-    :path => ":rails_root/public/system/:attachment/:id/:filename",
-    :url => "/system/:attachment/:id/:filename"
+    :path => ":rails_root/public/system/:attachment/:id/:normalized_file_name",
+    :url => "/system/:attachment/:id/:normalized_file_name"
 
   has_many :annotations
 
-#  before_post_process :set_content_type
+  # Change epub file name
+  Paperclip.interpolates :normalized_file_name do |attachment, style|
+    attachment.instance.normalized_file_name
+  end
 
-  def set_content_type
-    self.epub.instance_write(:content_type, MIME::Types.type_for(self.epub).to_s)
+  def normalized_file_name
+    "#{self.id}-#{self.epub_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
   end
   
 end
