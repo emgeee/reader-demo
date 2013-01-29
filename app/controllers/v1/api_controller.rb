@@ -9,7 +9,14 @@ class V1::ApiController < ApplicationController
   def show_documents
     @documents = Document.all
 
-    render json: @documents
+    retVal = Array.new
+    @documents.each {|document| 
+      retVal << document.attributes.merge(
+        {document[:document_url] => request.host_with_port + document.epub.url}
+      )
+    } 
+
+    render json: retVal
   end
 
   # GET /v1/documents/:document_id/annotations

@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   attr_accessible :body, :name, :epub
+  
   has_attached_file :epub,
     :path => ":rails_root/public/system/:attachment/:id/:normalized_file_name",
     :url => "/system/:attachment/:id/:normalized_file_name"
