@@ -15,5 +15,7 @@ class Document < ActiveRecord::Base
   def normalized_file_name
     "#{self.id}-#{self.epub_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
   end
+
+
   
 end

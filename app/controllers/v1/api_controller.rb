@@ -10,11 +10,7 @@ class V1::ApiController < ApplicationController
     @documents = Document.all
 
     retVal = Array.new
-    @documents.each {|document| 
-      retVal << document.attributes.merge(
-        {document[:document_url] => request.host_with_port + document.epub.url}
-      )
-    } 
+    @documents.each {|document| retVal << hash_with_path(document) } 
 
     render json: retVal
   end
@@ -90,6 +86,12 @@ class V1::ApiController < ApplicationController
     else
       render json: @annotation.errors, status: :unprocessable_entity
     end
+  end
+
+
+
+  def hash_with_path(document)
+     document.attributes.merge({document_url: request.host_with_port + document.epub.url})
   end
 
 end
