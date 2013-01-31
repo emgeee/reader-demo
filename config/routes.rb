@@ -10,12 +10,15 @@ ReaderDemo::Application.routes.draw do
 
     post '/documents/:document_id', to: 'api#new_document'
     put '/document/:document_id', to: 'api#update_document'
+    delete '/document/:document_id', to: 'api#delete_document'
 
     post '/documents/:document_id/annotations', to: 'api#new_annotation'
     
     get '/annotations/:annotation_id', to: 'api#show_annotation'
     put '/annotations/:annotation_id', to: 'api#update_annotation'
+    delete '/annotations/:annotation_id', to: 'api#delete_annotation'
 
   end
 
 end
+

@@ -54,6 +54,17 @@ class V1::ApiController < ApplicationController
     end
   end
 
+  # DELETE /v1/documents/:document_id
+  def delete_document
+    @document = Document.find_by_id(params[:document_id])
+
+    if @document.destroy
+      render json: @document, status: :accepted
+    else
+      render json: @document.errors, status: :unprocessable_entity
+    end
+  end
+
   #############################
   # Annotation Methods
   #############################
@@ -88,6 +99,16 @@ class V1::ApiController < ApplicationController
     end
   end
 
+  # DELETE /v1/annotations/:annotation_id
+  def delete_annotation
+    @annotation = Annotation.find_by_id(params[:annotation_id]).destroy
+
+    if @annotation.destroy
+      render json: @annotation, status: :accepted
+    else
+      render json: @annotation.errors, status: :unprocessable_entity
+    end
+  end
 
 
   def hash_with_path(document)
