@@ -29,7 +29,7 @@ class V1::ApiController < ApplicationController
   # GET /v1/documents/:document_id
   def show_document
     @document = Document.find_by_id(params[:document_id])
-    render json: @document
+    render json: hash_with_path(@document)
   end
 
   # POST /v1/documents
@@ -91,7 +91,11 @@ class V1::ApiController < ApplicationController
 
 
   def hash_with_path(document)
+    if document.nil?
+      {}
+    else
      document.attributes.merge({document_url: request.host_with_port + document.epub.url})
+   end
   end
 
 end
