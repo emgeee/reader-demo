@@ -5,7 +5,7 @@ class Document < ActiveRecord::Base
     :path => ":rails_root/public/system/:attachment/:id/:normalized_file_name",
     :url => "/system/:attachment/:id/:normalized_file_name"
 
-  has_many :annotations
+  has_many :annotations, :dependent => :destroy
 
   # Change epub file name
   Paperclip.interpolates :normalized_file_name do |attachment, style|
